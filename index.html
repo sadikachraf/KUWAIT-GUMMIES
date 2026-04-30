@@ -220,11 +220,123 @@ footer strong{color:rgba(255,255,255,.8)}
 .fi.vis{opacity:1;transform:translateY(0)}
 .tc{text-align:center}
 .mw{max-width:620px;margin-left:auto;margin-right:auto}
+
+/* ══════════════════════════════════
+   MOBILE FIRST — max-width: 767px
+══════════════════════════════════ */
+@media(max-width:767px){
+  /* Body clearance for sticky bar */
+  body{padding-bottom:72px}
+
+  /* Tighter section padding */
+  .sec,.ba-sec,.ingr-sec,.reviews-sec,.life-sec,.faq-sec{padding:36px 16px}
+  .product-sec{padding:32px 16px}
+  .pricing-sec{padding:40px 16px}
+  .order-sec{padding:36px 16px}
+  .final-cta{padding:40px 16px}
+
+  /* Top strip — shorter */
+  .top-strip{font-size:12px;padding:8px 10px}
+
+  /* Countdown — tighter */
+  .cd-bar{padding:8px 12px;font-size:12px;gap:6px}
+  .cd-b{font-size:15px;min-width:30px;padding:3px 5px}
+
+  /* Trust row — 2x2 grid */
+  .trust-row{display:grid;grid-template-columns:1fr 1fr;gap:0;padding:6px 8px}
+  .tr-item{justify-content:center;padding:6px 8px;border-left:none;border-bottom:1px solid rgba(212,53,106,.1);font-size:10px}
+  .tr-item:nth-child(1),.tr-item:nth-child(2){border-bottom:1px solid rgba(212,53,106,.1)}
+  .tr-item:nth-child(odd){border-left:none;border-right:1px solid rgba(212,53,106,.1)}
+  .tr-item span{font-size:13px}
+
+  /* Hero — compact overlay */
+  .hero-img{max-height:480px}
+  .hero-grad{padding:32px 16px 22px}
+  .hero-pill{font-size:11px;padding:5px 13px;margin-bottom:10px}
+  .hero h1{font-size:26px;margin-bottom:6px}
+  .hero-sub{font-size:13px;margin-bottom:12px}
+  .hero-discount{padding:7px 12px;gap:6px;margin-bottom:14px;font-size:12px;flex-wrap:wrap;justify-content:center}
+  .hero-discount .now{font-size:15px}
+  .hero-btn{font-size:15px;padding:14px 28px}
+  .hero-note{font-size:11px}
+
+  /* Proof bar — already 2x2, just tighten */
+  .pb-num{font-size:19px}
+  .pb-item{padding:12px 6px}
+
+  /* Section titles */
+  .sec-title{font-size:22px}
+  .sec-sub{font-size:13px}
+
+  /* Product badges — smaller */
+  .p-badge{font-size:11px;padding:6px 12px}
+  .prod-img-wrap{max-width:260px}
+
+  /* Benefits — single col image shorter */
+  .b-card img{height:180px}
+  .b-body{padding:14px 14px}
+  .b-title{font-size:15px}
+
+  /* Timeline — 2x2 grid on mobile */
+  .timeline{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .tl-item{min-width:unset}
+
+  /* Pricing cards — tighter layout */
+  .pricing-grid{gap:10px;margin-bottom:24px}
+  .pc{padding:14px 12px;gap:10px}
+  .pc-qty{font-size:13px}
+  .pc-dur{font-size:10px}
+  .pc-save{font-size:9px;padding:2px 7px}
+  .pc-was{font-size:10px}
+  .pc-now{font-size:16px}
+  .pc-per{font-size:9px}
+  .pc-b50{font-size:8px;padding:1px 5px}
+  .pc-ribbon{font-size:9px;padding:3px 10px;top:-10px}
+
+  /* CTA button */
+  .cta-btn{font-size:16px;padding:17px 20px}
+
+  /* Order form */
+  .form-wrap{padding:22px 16px;border-radius:18px;margin:0}
+  .form-head h3{font-size:18px}
+  .order-summary{padding:12px 14px}
+  .os-label{font-size:12px}
+  .os-price{font-size:18px}
+  .fg input,.fg select{padding:12px 14px;font-size:14px}
+  .sub-btn{font-size:16px;padding:15px 20px}
+  .cod-row{font-size:12px;padding:10px 12px}
+
+  /* Reviews */
+  .rv-card{padding:14px}
+  .rv-text{font-size:12px}
+
+  /* Lifestyle image */
+  .life-sec img{border-radius:16px}
+
+  /* FAQ */
+  .faq-q{font-size:13px;padding:14px 15px}
+  .faq-a{font-size:12px}
+
+  /* Sticky bar — safe area for iPhone notch */
+  .sticky-bar{
+    padding:10px 16px;
+    padding-bottom:max(10px, env(safe-area-inset-bottom));
+  }
+  .sb-lbl{font-size:10px}
+  .sb-price{font-size:15px}
+  .sb-btn{font-size:12px;padding:10px 16px}
+
+  /* Thank you box */
+  .ty-box{padding:30px 20px;border-radius:22px}
+  .ty-emoji{font-size:52px}
+  .ty-title{font-size:20px}
+  .ty-sub{font-size:13px}
+}
 </style>
 </head>
 <body>
 
-<div class="top-strip">🔥 عرض محدود: خصم 50% — الكميات تنفد بسرعة</div>
+
 
 <div class="cd-bar">
   <span style="opacity:.8">⏳ العرض ينتهي خلال</span>
@@ -243,12 +355,7 @@ footer strong{color:rgba(255,255,255,.8)}
   <div class="hdr-badge">✔ الدفع عند الاستلام</div>
 </header>
 
-<div class="trust-row">
-  <div class="tr-item"><span>💵</span>دفع عند الاستلام</div>
-  <div class="tr-item"><span>🚚</span>توصيل مجاني</div>
-  <div class="tr-item"><span>✅</span>منتج أصلي</div>
-  <div class="tr-item"><span>⭐</span>تقييم 4.9</div>
-</div>
+
 
 <section class="hero">
   <img class="hero-img" src="images/hero__1_-optimized.webp" alt="شعر كثيف ولامع" width="800" height="600" fetchpriority="high"/>
