@@ -1355,7 +1355,7 @@
 
     const [qty, price] = pkg.split('|');
     const orderData = {
-      OrderDate:        new Date().toLocaleString('ar-KW'),
+      OrderDate:        new Date().toLocaleString('en-GB', {day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'}),
       country:          'Kuwait',
       name:             name,
       phone:            phone,
@@ -1375,61 +1375,44 @@
       national_address: ''
     };
 
-    try {
-      await fetch(SHEET_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(orderData)
-      });
-    } catch(e) {
-      console.error('Sheet error:', e);
-    }
+    // ── SHOW THANK YOU INSTANTLY ─────────────
+    document.getElementById('tyOrderDetails').innerHTML =
+      '📦 طلبك: × ' + qty + ' زجاجة — ' + price + ' د.ك<br/>🚚 التوصيل مجاني — الدفع عند الاستلام';
+    document.getElementById('thankyouOverlay').classList.add('active');
+    document.getElementById('stickyCta').style.display = 'none';
+    btn.disabled = false;
+    btn.innerHTML = 'تأكيدي طلبي الآن 🚀';
 
-    // ── FIRE PURCHASE PIXELS ─────────────────
+    // ── FIRE PIXELS ──────────────────────────
     const revenue = parseFloat(price);
-
-    // Meta Purchase
     if (typeof fbq !== 'undefined') {
       fbq('track', 'Purchase', {
-        value: revenue,
-        currency: 'KWD',
+        value: revenue, currency: 'KWD',
         content_name: "Nature's Bounty Hair Skin Nails Gummies",
-        content_ids: ['natures-bounty-hsn'],
-        content_type: 'product',
+        content_ids: ['natures-bounty-hsn'], content_type: 'product',
         num_items: parseInt(qty)
       });
     }
-
-    // TikTok Purchase
     if (typeof ttq !== 'undefined') {
       ttq.track('CompletePayment', {
-        value: revenue,
-        currency: 'KWD',
-        content_id: 'natures-bounty-hsn',
-        content_type: 'product',
+        value: revenue, currency: 'KWD',
+        content_id: 'natures-bounty-hsn', content_type: 'product',
         quantity: parseInt(qty)
       });
     }
-
-    // Snapchat Purchase
     if (typeof snaptr !== 'undefined') {
       snaptr('track', 'PURCHASE', {
-        price: revenue,
-        currency: 'KWD',
+        price: revenue, currency: 'KWD',
         transaction_id: 'order_' + Date.now()
       });
     }
 
-    // ── SHOW THANK YOU ───────────────────────
-    document.getElementById('tyOrderDetails').innerHTML =
-      '📦 طلبك: × ' + qty + ' زجاجة — ' + price + ' د.ك<br/>🚚 التوصيل مجاني — الدفع عند الاستلام';
-
-    document.getElementById('thankyouOverlay').classList.add('active');
-    document.getElementById('stickyCta').style.display = 'none';
-
-    btn.disabled = false;
-    btn.innerHTML = 'تأكيدي طلبي الآن 🚀';
+    // ── SEND TO SHEET IN BACKGROUND ──────────
+    fetch(SHEET_URL, {
+      method: 'POST', mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(orderData)
+    }).catch(e => console.error('Sheet error:', e));
   }
 
   // ── FAQ TOGGLE ───────────────────────────────
